@@ -9,13 +9,13 @@ app.get('/', (req, res) => {
 }); 
 
 app.listen(PORT, () => {
-    console.log('Server is running in port ${PORT}');
+    console.log(`Server is running in port ${PORT}`);
 });
 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'Saahkn_17',
     database: 'mahasiswa',
     port: 3308   
 })
@@ -70,7 +70,7 @@ app.put('/api/users/:id', (req,res) => {
     const userID = req.params.id;
     const {nama, nim, kelas} = req.body;
     db.query(
-        'UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ?, WHERE id = ?',
+        'UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ? WHERE id = ?',
         [nama, nim, kelas, userID],
         (err, results) => {
             if (err) {
