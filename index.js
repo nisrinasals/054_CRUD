@@ -27,7 +27,7 @@ db.connect((err) => {
     }
 })
 
-//Buat Method POST and GET
+
 
 //GET
 app.get('/api/users', (req,res) => {
@@ -60,6 +60,24 @@ app.post('/api/users', (req,res) => {
             }
 
             res.status(201).json({message: 'User created successfully'});
+        }
+    );
+});
+
+
+//PUT
+app.put('/api/users/:id', (req,res) => {
+    const userID = req.params.id;
+    const {nama, nim, kelas} = req.body;
+    db.query(
+        'UPDATE mahasiswa SET nama = ?, nim = ?, kelas = ?, WHERE id = ?',
+        [nama, nim, kelas, userID],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: 'Database Error'});
+            }
+            res.json({message: 'User Updates successfully!'})
         }
     );
 });
