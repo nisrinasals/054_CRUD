@@ -26,3 +26,17 @@ db.connect((err) => {
         return;
     }
 })
+
+//Buat Method POST and GET
+
+//GET
+app.get('/api/users', (req,res) => {
+    db.query('SELECT * FROM mahasiswa', (err, results) => {
+        if (err) {
+            console.error('Error excecuting query:0' + err.stack);
+            res.status(500).send('Error Fetching users');
+            return;
+        }
+        res.json(results);
+    })
+})
